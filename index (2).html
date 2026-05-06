@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Manipulación de Arrays</title>
+
+<style>
+  body{
+    font-family: Arial;
+    background:#2c3e50;
+    color:#ecf0f1;
+    padding:20px;
+  }
+
+  button{
+    padding:10px 20px;
+    margin:5px;
+    background:#3498db;
+    border:none;
+    color:white;
+    border-radius:5px;
+    cursor:pointer;
+  }
+
+  button:hover{
+    background:#2980b9;
+  }
+
+  #output{
+    margin-top:10px;
+  }
+</style>
+</head>
+
+<body>
+
+<h3>Manipulación de Arrays en JavaScript</h3>
+
+<p>Array actual: <strong id="arrayActual">[]</strong></p>
+
+<button onclick="agregar()">Agregar elemento</button>
+<button onclick="eliminar()">Eliminar último</button>
+<button onclick="ordenar()">Ordenar Ascendente</button>
+<button onclick="buscar()">Buscar elemento</button>
+
+<div id="output">Aquí voy a mostrar los resultados...</div>
+
+<script>
+let arr = [];
+
+function actualizar(){
+  document.getElementById("arrayActual").textContent = JSON.stringify(arr);
+}
+
+function agregar(){
+  let v = prompt("Valor:");
+  if(v !== null && v !== ""){
+    arr.push(Number(v)); // ← guardar como número
+  }
+  actualizar();
+}
+
+function eliminar(){
+  arr.pop();
+  actualizar();
+}
+
+function ordenar(){
+  arr.sort((a, b) => a - b); // ← orden numérico
+  actualizar();
+}
+
+function buscar(){
+  let v = prompt("Buscar:");
+  if(v !== null && v !== ""){
+    let valor = Number(v.trim()); // ← convertir a número
+    let i = arr.indexOf(valor);
+
+    document.getElementById("output").textContent =
+      i !== -1 ? "Encontrado en posición " + i : "No encontrado";
+  }
+}
+
+actualizar();
+</script>
+
+</body>
+</html>
